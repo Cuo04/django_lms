@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dashboard
+        </title>
+
+        <style>
+            body{
+                margin: 0;
+                background: black;
+                color: #ffffff;
+                font-family: sans-serif;
+            
+            }
+            header{
+                background-color: darkblue;
+                padding: 20px;
+            }
+            header a{
+                color: #ffffff;
+                font-family: sans-serif;
+                font-weight: bold;
+                text-decoration: none;
+                margin-right: 50px;
+                margin-top:10px;
+                
+            }
+            header a:hover{
+                border-bottom: 2px solid white;
+                {% comment %} background:  #592fff;
+                padding: 2px; {% endcomment %}
+                {% comment %} box-shadow: 1px 1px 2px 2px #5973ef; {% endcomment %}
+                border-radius: 1px;
+            }
+            nav{
+                display:flex;
+                justify-content:center;                
+            }
+            .logout{
+                font-weight: bold;
+                text-decoration: none;
+                color:#5973ef;
+                display: block;
+            }
+            .logout:hover{
+                color: white;
+            }
+            .container{
+                margin: 20px 50px;
+            }
+            h3{
+                display: inline;
+            }
+        </style>
+    </head>
+    <body>
+        {% comment %} <h1>I am Here</h1> {% endcomment %}
+        <header>
+            <nav>
+                <a href="{% url 'students:home' %}">Home</a>
+               
+            </nav>
+        </header>
+        <div>
+            <img src = "{{ user.userprofile.image.url }}">
+        </div>
+        <div class="container"> <h3> Welcome,</h3>
+        {% if user.is_authenticated %}
+            {{ user.username.capitalize }}
+            <a href="{% url 'students:logout' %}" class="logout">Logout</a>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>
+                    {% if message.tags %} {{ message }} {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div>
+                <h4> Phone Number: {{ profile.phone }}</h4>
+                <h3> Date of Birth: {{ profile.dob }}</h4>
+                <h4> Address: {{ profile.address }}</h4><br>
+            </div>
+
+            <h2>Update Details Below</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <button type="submit">update</button>
+            </form>
+            
+                <a href="{% url 'students:logout' %}" class="logout">Logout</a>
+            
+        {% else %}
+            <h3>Please sign in</h3>
+        {% endif %}
+        </div>
+    </body>
+</html>

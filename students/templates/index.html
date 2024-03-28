@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Students
+        </title>
+        <link rel="stylesheet" href="{% static 'css/student.css' %}">
+
+        
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'students:home' %}">Home</a>
+                {% comment %} <a href="{% url 'students:students' %}">View Register</a> {% endcomment %}
+            </nav>
+        </header>
+        <main>
+            <h1>
+                Welcome to my students page
+            </h1>
+            <h1 class="h1-register">New User? Register Here</h1>
+            <a href="{% url 'students:registration' %}" class="signup">SignUp</a>
+        </main>
+        <div>Already have an account? <a href="{% url 'students:login' %}">Login</a></div>
+        
+        <footer>
+            
+        </footer>
+    </body>
+</html>

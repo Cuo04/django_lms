@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            students register
+        </title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Join Date</td>
+            </tr>
+            {% for x in mystudents %}
+            <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.firstname}}</td>
+                <td>{{x.lastname}}</td>
+                <td>{{x.join_date}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+
+    
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'students:home' %}">Home</a>
+                {% comment %} <a href="{% url 'students:students' %}">View Register</a> {% endcomment %}
+            </nav>
+        </header>
+        <main>
+            {% block content %} {% endblock %}
+        </main>
+        <div>Already have an account? <a href="{% url 'students:login' %}">Login</a></div>
+        
+        <footer>
+            
+        </footer>
+    </body>
+</html>

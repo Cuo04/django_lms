@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+        <style>
+            body{
+                margin: 0;
+                background: black;
+                color: #ffffff;
+                font-family: sans-serif;
+            }
+            header{
+                background-color: darkblue;
+                padding: 20px;
+            }
+            header a{
+                color: #ffffff;
+                font-family: sans-serif;
+                font-weight: bold;
+                text-decoration: none;
+                margin-right: 50px;
+                margin-top:10px;
+                
+            }
+            header a:hover{
+                border-bottom: 2px solid white;
+                {% comment %} background:  #592fff;
+                padding: 2px; {% endcomment %}
+                {% comment %} box-shadow: 1px 1px 2px 2px #5973ef; {% endcomment %}
+                border-radius: 1px;
+            }
+            nav{
+                display:flex;
+                justify-content:center;                
+            }
+            .home1{
+                border: 2px solid blue;
+                width:30%;
+                margin: auto;
+                padding: 30px;
+                height: 50%;
+                border-radius: 6px;
+                position: relative;
+                top: 90px;
+                background: #fff;
+                color: #000;
+            }
+            div h1{
+                text-align: center;
+            }
+            form button{
+                margin-left: 35%;
+                background: #000;
+                color:#fff;
+            }
+            form button:hover{
+                background: white;
+                color: black;
+            }
+            p a:hover{
+                text-decoration: underlined;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'students:home' %}">Back to Homepage</a>
+                
+            </nav>
+        </header>
+        <main class="home1">
+        <div>
+            <h1>
+                Login
+            </h1>
+        </div>
+        {% if error_message %}
+            <p class="error-message"> {{ error_message }} </p>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>
+            If you do not have an account,
+            <a style="text-decoration:none;" href="{% url 'students:registration' %}">Register</a> here
+        </p>
+    </main>
+    </body>
+</html>
